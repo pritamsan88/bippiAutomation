@@ -33,6 +33,7 @@ public class Testproducthmenu {
     @Test(priority = 2)
     public void productselect() throws InterruptedException {
         fact.reopen();
+        fact.reopen2();
 
     }
 

@@ -29,6 +29,11 @@ public class productSelectpagefactory {
     WebElement subcategories1;
     @FindBy(css = "#menu-header-menu > li.navitem.has-children > ul > li:nth-child(1) > ul > li:nth-child(2) > a")
     WebElement subcategories2;
+
+    @FindBy(css = "#menu-header-menu > li.navitem.has-children > ul > li:nth-child(2) > a")
+    WebElement categories2;
+
+
     //By mainmenuhead = By.cssSelector("#menu-header-menu > li.navitem.has-children > a");
     //By cate = By.cssSelector("ul.sub-menu>li>a");
     //By subs = By.cssSelector("ul.child-sub-menu>li>a");
@@ -62,6 +67,29 @@ public class productSelectpagefactory {
             //act.pause(5000);
         }
 
+
+    }
+
+    public void reopen2() throws InterruptedException {
+        Actions act = new Actions(driver);
+
+        for (int i = 1; i < 5; i++) {
+            act.moveToElement(mainmenu)
+                    .pause(Duration.ofSeconds(1))
+                    .moveToElement(categories2)
+                    .pause(Duration.ofSeconds(1));
+            String subCategoryCss = "#menu-header-menu > li.navitem.has-children > ul > li:nth-child(2) > ul > li:nth-child(" + i + ") > a";
+
+            WebElement subCategory = driver.findElement(By.cssSelector(subCategoryCss));
+
+            // Click on sub-category
+            act.moveToElement(subCategory).click().build().perform();
+
+            // Pause to allow page to load or content to change
+            Thread.sleep(5000);
+
+
+        }
 
     }
 }
