@@ -10,7 +10,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Factory;
-
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +31,9 @@ public class productSelectpagefactory {
 
     @FindBy(css = "#menu-header-menu > li.navitem.has-children > ul > li:nth-child(2) > a")
     WebElement categories2;
+
+    @FindBy(css = "#menu-header-menu > li.navitem.has-children > ul > li:nth-child(3) > a")
+    WebElement categories3;
 
 
     //By mainmenuhead = By.cssSelector("#menu-header-menu > li.navitem.has-children > a");
@@ -90,6 +92,23 @@ public class productSelectpagefactory {
 
 
         }
+
+    }
+
+    public void reopen3() throws InterruptedException {
+        Actions act = new Actions(driver);
+        for (int i = 1; i < 5; i++) {
+            act.moveToElement(mainmenu)
+                    .pause(Duration.ofSeconds(1))
+                    .moveToElement(categories3)
+                    .pause(Duration.ofSeconds(1));
+            String subCategoryCss = "#menu-header-menu > li.navitem.has-children > ul > li:nth-child(3) > ul > li:nth-child(" + i + ") > a";
+            WebElement subCategory = driver.findElement(By.cssSelector(subCategoryCss));
+            act.moveToElement(subCategory).click().build().perform();
+            Thread.sleep(5000);
+
+        }
+
 
     }
 }
