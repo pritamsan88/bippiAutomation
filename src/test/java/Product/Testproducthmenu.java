@@ -17,26 +17,24 @@ public class Testproducthmenu {
     checkout check;
 
 
-
     @BeforeTest
-    public void startup()
-    {
+    public void startup() {
         WebDriverManager.chromedriver().setup();
-        driver=new ChromeDriver();
-
+        driver = new ChromeDriver();
 
 
     }
+
     @Test(priority = 1)
-    public void openurl()
-    {
-       fact=new productSelectpagefactory(driver) ;
-       fact.openurl();
+    public void openurl() {
+        fact = new productSelectpagefactory(driver);
+        fact.openurl();
 
     }
+
     @Test(priority = 2)
     public void productselect() throws InterruptedException {
-        prod =new product(driver);
+        prod = new product(driver);
         fact.reopen();
         prod.addtocart();
         fact.reopen2();
@@ -45,6 +43,7 @@ public class Testproducthmenu {
         prod.addtocart();
 
     }
+
     @Test(priority = 3)
     public void cartdetails() throws InterruptedException {
         prod.verifycartsection();
@@ -52,11 +51,11 @@ public class Testproducthmenu {
         prod.cartcalculationcheck();
 
 
-
     }
+
     @Test(priority = 4)
     public void checkout() throws InterruptedException {
-        check=new checkout(driver);
+        check = new checkout(driver);
         check.checkoutclick();
         check.checkoutdetails();
         check.orderreceived();

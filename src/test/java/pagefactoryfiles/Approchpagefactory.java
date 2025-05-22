@@ -31,34 +31,35 @@ public class Approchpagefactory {
     public void menuselect() throws InterruptedException {
         for (int i = 1; i < 5; i++) {
             for (int j = 1; j < 5; j++) {
-                //try {
-                WebElement mainmenu = driver.findElement(By.cssSelector("#menu-header-menu > li.navitem.has-children > addd")); // adjust if needed
-                Actions act = new Actions(driver);
+                try {
+                    WebElement mainmenu = driver.findElement(By.cssSelector("#menu-header-menu > li.navitem.has-children > a")); // adjust if needed
+                    Actions act = new Actions(driver);
 
-                act.moveToElement(mainmenu).pause(Duration.ofSeconds(1)).perform();
+                    act.moveToElement(mainmenu).pause(Duration.ofSeconds(1)).perform();
 
-                // Hover over the i-th category
-                String cate = "#menu-header-menu > li.navitem.has-children > ul > li:nth-child(" + i + ") > a";
-                WebElement categories = driver.findElement(By.cssSelector(cate));
-                act.moveToElement(categories).pause(Duration.ofSeconds(1)).perform();
+                    // Hover over the i-th category
+                    String cate = "#menu-header-menu > li.navitem.has-children > ul > li:nth-child(" + i + ") > a";
+                    WebElement categories = driver.findElement(By.cssSelector(cate));
+                    act.moveToElement(categories).pause(Duration.ofSeconds(1)).perform();
 
-                // Hover and click the j-th subcategory under the i-th category
-                String subCategoryCss = "#menu-header-menu > li.navitem.has-children > ul > li:nth-child(" + i + ") > ul > li:nth-child(" + j + ") > a";
-                List<WebElement> subCategoryList = driver.findElements(By.cssSelector(subCategoryCss));
+                    // Hover and click the j-th subcategory under the i-th category
+                    String subCategoryCss = "#menu-header-menu > li.navitem.has-children > ul > li:nth-child(" + i + ") > ul > li:nth-child(" + j + ") > a";
+                    List<WebElement> subCategoryList = driver.findElements(By.cssSelector(subCategoryCss));
 
-                if (subCategoryList.isEmpty()) {
-                    System.out.println("No subcategory at i=" + i + ", j=" + j);
-                    continue;
+                    if (subCategoryList.isEmpty()) {
+                        System.out.println("No subcategory at i=" + i + ", j=" + j);
+                        continue;
+                    }
+                    WebElement subCategory = subCategoryList.get(0);
+                    act.moveToElement(subCategory).pause(Duration.ofSeconds(1)).click().perform();
+                    Thread.sleep(2000);
+
+                } catch (Exception e) {
+                    System.out.println("Error at i=" + i + ", j=" + j + ": " + e.getMessage());
                 }
-                WebElement subCategory = subCategoryList.get(0);
-                act.moveToElement(subCategory).pause(Duration.ofSeconds(1)).click().perform();
-                Thread.sleep(2000);
-
-            } //catch (Exception e) {
-            // System.out.println("Error at i=" + i + ", j=" + j + ": " + e.getMessage());
+            }
         }
     }
 }
-
 
 

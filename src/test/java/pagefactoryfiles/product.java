@@ -56,7 +56,7 @@ public class product {
     @FindBy(css = " div.wc-block-cart-item__prices>span>span")
     List<WebElement> unitprice;
     @FindBy(css = "  div.wc-block-cart-item__quantity > div > input")
-   List< WebElement> Quantity;
+    List<WebElement> Quantity;
     @FindBy(css = "  div.wc-block-cart-item__total-price-and-sale-badge-wrapper > span> span")
     List<WebElement> subtotal;
     @FindBy(xpath = "//input[@id='product-qty']")
@@ -194,18 +194,18 @@ public class product {
 
             String quantityText = Quantity.get(i).getAttribute("value");
             int quantity = Integer.parseInt(quantityText);
-            System.out.println("checking quantity"+quantity);
+            System.out.println("checking quantity" + quantity);
             double ActualproductTotal = unitPrice * quantity;
 
-            System.out.println("Actual test"+ActualproductTotal);
+            System.out.println("Actual test" + ActualproductTotal);
 
-            String subtotalprice=subtotal.get(i).getText().trim();
+            String subtotalprice = subtotal.get(i).getText().trim();
 
-            double expectedtotalprice=Double.parseDouble(subtotalprice.replace("$",""));
+            double expectedtotalprice = Double.parseDouble(subtotalprice.replace("$", ""));
 
-            System.out.println("Expected test"+expectedtotalprice);
+            System.out.println("Expected test" + expectedtotalprice);
 
-            Assert.assertEquals(ActualproductTotal,expectedtotalprice,0.01,"Mismatch in subtotal for product"+(i + 1));
+            Assert.assertEquals(ActualproductTotal, expectedtotalprice, 0.01, "Mismatch in subtotal for product" + (i + 1));
 
             System.out.println("Product " + (i + 1) + " → Unit Price: " + unitPrice + ", Quantity: " + quantity + ", Subtotal: " + ActualproductTotal);
 
@@ -219,8 +219,7 @@ public class product {
 
     }
 
-    public void productquantityincrease()
-    {
+    public void productquantityincrease() {
         incrsequatity.clear();
         incrsequatity.sendKeys("2");
 

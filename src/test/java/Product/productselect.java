@@ -19,7 +19,7 @@ public class productselect {
     @BeforeTest
     public void browseropen() {
         WebDriverManager.chromedriver().setup();
-        options=new ChromeOptions();
+        options = new ChromeOptions();
         options.addArguments("--incognito");
         driver = new ChromeDriver(options);
         String projecturl = System.getProperty("user.dir");
@@ -80,13 +80,15 @@ public class productselect {
         pro.cartdetailsvalidationcheck();
         pro.cartcalculationcheck();
     }
-    @Test(priority = 10 )
+
+    @Test(priority = 10)
     public void checkoutclick() throws InterruptedException {
-        check=new checkout(driver);
+        check = new checkout(driver);
         check.checkoutclick();
         check.checkoutdetails();
 
     }
+
     @Test(priority = 11)
     public void orderrecieve() throws InterruptedException {
         check.orderreceived();
